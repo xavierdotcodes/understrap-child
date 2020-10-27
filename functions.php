@@ -92,3 +92,34 @@ function resources_custom_post_type() {
     
 }
 add_action( 'init', 'resources_custom_post_type'  );
+
+function subscriber_custom_post_type() {
+    $labels = array(
+        'name' => _x( 'Subscribers', 'post type general name' ), 
+        'singular_name' => _x( 'Subscriber', 'post type singuler name' ), 
+        'add_new' => _x('Add New', 'Subscriber'), 
+        'add_new_item' => __( 'Add New Subscriber' ),
+        'edit_item' => __('Edit Subscriber'), 
+        'new_item' => __('New Subscriber'),
+        'all_items' => __('All Subscriber'),
+        'view_item' => __('View Subscriber'), 
+        'search_items' => __('Search subscribers'), 
+        'not_found' => __('No Subscribers found'), 
+        'not_found_in_trash' => __('No subscribers found in the trash'),
+        'parent_item_colon' => '',
+        'menu_name' => 'Subscribers'
+    );
+
+    $args = array(
+        'labels' => $labels,
+        'description' => 'Displays subscribers and their details',
+        'public' => true,
+        'menu_position' => 6, 
+        'supports' => array('title', 'editor', 'thumbnail', 'excerpt', 'comments'), 
+        'has_archive' => true,
+    );
+
+    register_post_type( 'subscriber', $args  );
+    
+}
+add_action( 'init', 'subscriber_custom_post_type'  );
