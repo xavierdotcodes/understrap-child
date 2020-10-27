@@ -31,3 +31,64 @@ function add_child_theme_textdomain() {
     load_child_theme_textdomain( 'understrap-child', get_stylesheet_directory() . '/languages' );
 }
 add_action( 'after_setup_theme', 'add_child_theme_textdomain' );
+
+function lesson_custom_post_type() {
+    $labels = array(
+        'name' => _x( 'Lessons', 'post type general name' ), 
+        'singular_name' => _x( 'Lesson', 'post type singuler name' ), 
+        'add_new' => _x('Add New', 'Lesson'), 
+        'add_new_item' => __( 'Add New Lesson' ),
+        'edit_item' => __('Edit Lesson'), 
+        'new_item' => __('New Lesson'),
+        'all_items' => __('All Lessons'),
+        'view_item' => __('View Lesson'), 
+        'search_items' => __('Search lessons'), 
+        'not_found' => __('No Lessons found'), 
+        'not_found_in_trash' => __('No lessons found in the trash'),
+        'parent_item_colon' => '',
+        'menu_name' => 'Lessons'
+    );
+    $args = array(
+        'labels' => $labels,
+        'description' => 'Displays lessons and their description',
+        'public' => true,
+        'menu_position' => 4, 
+        'supports' => array('title', 'editor', 'thumbnail', 'excerpt', 'comments'), 
+        'has_archive' => true,
+    );
+    register_post_type( 'lesson', $args  );
+    
+}
+add_action( 'init', 'lesson_custom_post_type'  );
+
+
+function resources_custom_post_type() {
+    $labels = array(
+        'name' => _x( 'Resources', 'post type general name' ), 
+        'singular_name' => _x( 'Resource', 'post type singuler name' ), 
+        'add_new' => _x('Add New', 'Lesson'), 
+        'add_new_item' => __( 'Add New Resource' ),
+        'edit_item' => __('Edit Resource'), 
+        'new_item' => __('New Resource'),
+        'all_items' => __('All Resources'),
+        'view_item' => __('View Resource'), 
+        'search_items' => __('Search resources'), 
+        'not_found' => __('No Resources found'), 
+        'not_found_in_trash' => __('No resources found in the trash'),
+        'parent_item_colon' => '',
+        'menu_name' => 'Resources'
+    );
+
+    $args = array(
+        'labels' => $labels,
+        'description' => 'Displays resources and their description',
+        'public' => true,
+        'menu_position' => 5, 
+        'supports' => array('title', 'editor', 'thumbnail', 'excerpt', 'comments'), 
+        'has_archive' => true,
+    );
+
+    register_post_type( 'resource', $args  );
+    
+}
+add_action( 'init', 'resources_custom_post_type'  );
