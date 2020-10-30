@@ -1,0 +1,33 @@
+nav#main-nav{
+    .navbar-brand{
+        color:black;
+        font-family:$montserrat;
+        font-size:10pt;
+    }
+    ul#main-menu{
+        li{
+            padding:0 .5em;
+            width:100px;
+            a{
+                font-size:10pt;
+                font-family:$montserrat;
+                color:black;
+                text-align:center;
+            }
+        }
+        li:nth-child(3){
+            width:80px;
+        }
+        li:nth-child(2){
+            width:120px;
+        }
+        li:last-child{
+            background-color:$radioflyer;
+            border-radius:60px 60px 60px 60px;
+            a{
+                color:white;
+            }
+        }
+    }
+}
+     
