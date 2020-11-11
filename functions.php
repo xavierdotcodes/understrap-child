@@ -123,3 +123,53 @@ function subscriber_custom_post_type() {
     
 }
 add_action( 'init', 'subscriber_custom_post_type'  );
+
+
+//Subscriber form action handler
+function save_subscriber( $post_id ){
+
+    //if not of post type: subscriber
+    if( get_post_type( $post_id ) !== 'subscriber' ){
+        return;
+    } 
+
+    //exit if on admin
+    if( is_admin() ){
+        return;
+    }
+
+    $post = get_post( $post_id ); 
+
+    $name = get_field( 'name', $post_id );
+    $email = get_field( 'email', $post_id ); 
+}
+add_action( 'acf/save_post', 'save_subscriber' );
+
+//Register Footer menu widget
+function understrap_child_widgets_init(){
+    $widget_before = '<div id="footer-menu" class="col-3">';
+    $widget_after = '</div>';
+
+    register_sidebar( array( 
+        'name' => esc_html__( 'Footer Menu Area', 'understrap' ), 
+        'id' => 'footer', 
+        'description' => esc_html__('Display Footer Menu', 'understrap'), 
+        'before_widget' => $widget_before, 
+        'after_widget' => $widget_after,
+    ) );    
+
+
+}
+add_action( 'widgets_init', 'understrap_child_widgets_init' ); 
+
+//read more >  excerpt link
+function understrap_all_excerpts_get_more_link( $post_excerpt ) {
+    if(! is_admin() ){
+        $post_excerpt = $post_excerpt . ' [...]<p><a class="understrap-read-more-link" href="' . esc_url( get_permalink( get_the_ID() ) ) . '">' 
+            . __('Read More &rsaquo;', 'understrap' ) . '</a></p>'; 
+        return $post_excerpt;
+    }
+}
+
+
+
