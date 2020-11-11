@@ -9,14 +9,13 @@
 defined( 'ABSPATH' ) || exit;
 ?>
 
-<article <?php post_class( "container" ); ?> id="homepage-about">
+<article <?php post_class( "container py-3" ); ?> id="about-section">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-6">
             <?php the_content(); ?>
-        </div>
-        <div class="col-md-6">
+        </div><!-- .col-6 --> 
+        <div class="col-6">
             <?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
-        </div>
-    </div>
-
+        </div> <!-- .col-6 --> 
+    </div><!-- .row -->
 </article><!-- #post-## -->

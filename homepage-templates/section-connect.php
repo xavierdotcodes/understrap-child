@@ -30,58 +30,37 @@ if( !empty( $linkedin ) ) $icon_count++;
 if( !empty( $facebook ) ) $icon_count++;
 if( !empty( $youtube ) ) $icon_count++;
 
-
-if( $icon_count > 2 ){
-    $columns = "col-md-4"; 
-    $offset = "col-md-offset-4";
-}else{
-    $columns = "col-md-2"; 
-    $offset = "col-md-offset-5";
-}
-
-$background_image = get_field( 'background_image' );
+$background_image = get_field( 'get_connected_section_background_image' );
 
  if( !$icon_count == 0 ) :  ?>
 
-    <article id="get-connected-section" class="container" style="background-image:url('<?php echo $background_image; ?>'); background-size:cover; background-repeat:no-repeat;">
+    <article id="get-connected-section" class="container py-5" style="background-image:url('<?php echo $background_image; ?>');">
         <h2 class="section-heading">Get Connected</h2> 
-
-        <div class="icons <?php echo $columns . " " . $offset; ?> row">
+        <div class="mx-auto row col-<?php echo  $icon_count; ?>">
         <?php if( !empty( $instagram ) ) : ?>
             <!-- instagram --> 
-            <div id="instagram-icon" class="social-icon">
-               <a href="<?php sprintf('http://www.instagram.com/%1$s', $instagram); ?>"> <i class="fab fa-instagram"></i></a>
-            </div>
+           <a class="mx-auto" href="<?php sprintf('http://www.instagram.com/%1$s', $instagram); ?>"> <i class="fab fa-instagram fa-3x"></i></a>
         <?php endif; ?>
 
         <?php if ( !empty( $twitter ) ) : ?>
             <!-- twitter --> 
-            <div id="twitter-icon" class="social-icon"> 
-                <a href="<?php sprintf('%1$s%2$s', $twitter_url, $twitter); ?>"> <i class="fab fa-twitter"></i> </a>
-            </div> 
+                <a class="mx-auto" href="<?php sprintf('%1$s%2$s', $twitter_url, $twitter); ?>"> <i class="fab fa-twitter fa-3x"></i> </a>
         <?php endif; ?>
 
         <?php if( !empty( $linkedin ) ) : ?>
             <!-- LinkedIn --> 
-            <div id="linkedin-icon" class="social-icon">
-                <a href="<?php sprintf( '%1$s%2$s', $linkedin_url, $linkedin ); ?>"> <i class="fab fa-linkedin-in"></i></a> 
-            </div>
+                <a class="mx-auto" href="<?php sprintf( '%1$s%2$s', $linkedin_url, $linkedin ); ?>"> <i class="fab fa-linkedin-in"></i></a> 
         <?php endif; ?>
 
         <?php if( !empty( $youtube ) ) :?>
             <!-- youtube --> 
-            <div id="youtube-icon" class="social-icon">
-                <a href="<?php sprintf( '%1$s%2$s', $youtube_url, $youtube ); ?>"> <i class="fab fa-youtube"></i> </a>  
-            </div>
+                <a class="mx-auto" href="<?php sprintf( '%1$s%2$s', $youtube_url, $youtube ); ?>"> <i class="fab fa-youtube fa-3x"></i> </a>  
         <?php endif; ?>
 
         <?php if( !empty( $facebook ) ) : ?>
             <!-- Facebook --> 
-            <div id="facebook_icon" class="social-icon"> 
-                <a href="<?php sprintf( '%1$s%2$s', $facebook_url, $facebook  );  ?>"> <i class="fab fa-facebook"></i> </a>
-            </div> 
+                <a class="mx-auto" href="<?php sprintf( '%1$s%2$s', $facebook_url, $facebook  );  ?>"> <i class="fab fa-facebook fa-3x"></i> </a>
         <?php endif; ?>
-                    
-        </div> <!-- .icons --> 
+                   </div> 
     </article>
 <?php endif;?>

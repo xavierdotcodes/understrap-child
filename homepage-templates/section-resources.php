@@ -9,10 +9,11 @@ $args = array(
 $resources = new WP_Query($args); 
 
  ?>
- <article class="container homepage-section" id="resources-section" style="background-image:url('<?php echo $resources_background_image;  ?>'); background-size:cover; background-repeat:no-repeat;">
+ <article class="container pt-5" id="resources-section" style="background-image:url('<?php echo $resources_background_image;  ?>');">
 
     <h2 class="section-heading">Resources</h2>
-    <div class="row">
+        <div class="row">
+            <div class="col-10 card-deck mx-auto">
 
 <?php 
 //Wordpress Loop
@@ -21,17 +22,22 @@ if( $resources->have_posts() ) :
         $resources->the_post();
 ?>
 
-    <article class="resource col-md-4" id="resource-<?php the_ID(); ?>">
-        <img src="<?php echo get_the_post_thumbnail_url(); ?>" /> 
-        <?php the_content();  ?>
-        <button class="radioflyer rounded-pill learn-more-button">Learn More</button>
-    </article>
+        <div class="resource card w-25 col-4 text-center"  id="resource-<?php the_ID(); ?>">
+            <img class="card-img-top pt-3" src="<?php echo get_the_post_thumbnail_url(); ?>" /> 
+            <div class="card-body">
+                <h5 class="card-title"><?PHP  ?></h5>
+                <?php the_content();  ?>
+                <a class="col-12 understrap_btn rounded-pill text-uppercase" style="color:white;">learn more</a>
+        
+            </div>
+        </div><!-- .card -->
 
 <?php
     endwhile;
 endif;
 ?>
 
+        </dvi> <!--card-deck --> 
     </div><!-- .row -->
 </article> <!-- .container --> 
 
