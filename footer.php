@@ -11,6 +11,8 @@
 defined( 'ABSPATH' ) || exit;
 
 $container = get_theme_mod( 'understrap_container_type' );
+wp_reset_query();
+$site_info = get_field( 'site_info' ); 
 ?>
 
 
@@ -19,19 +21,15 @@ $container = get_theme_mod( 'understrap_container_type' );
 	<div class="<?php echo esc_attr( $container ); ?>">
 <?php get_template_part( 'sidebar-templates/footer', 'full' ); ?>
 
-		<div class="row">
+		<div class="d-flex flex-row offset-1">
 
-			<div class="col-md-12">
+			<div class="col-12">
 
-				<footer class="site-footer" id="colophon">
+				<div class="site-footer" id="colophon">
 
-					<div class="site-info">
+					<p class="site-info">&copy;<?php echo $site_info; ?></p><!-- .site-info -->
 
-                        <?php sprintf( '&copy; %1$s. All Rights Reserved', get_bloginfo( 'name' ) ); ?>
-
-					</div><!-- .site-info -->
-
-				</footer><!-- #colophon -->
+				</div><!-- #colophon -->
 
 			</div><!--col end -->
 
