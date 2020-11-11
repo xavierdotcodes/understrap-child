@@ -1,13 +1,18 @@
-div.wrapper#full-width-page-wrapper{
-    padding:0;
+body{
+    position:relative;
 }
+
+div.wrapper#full-width-page-wrapper{
+    div#content.container{
+        background:white;
+    }
+}
+
 nav#main-nav{
-    padding-top:0;
-    padding-bottom:0;
     background:black;
     div.container{
         background:white;
-        width:1110px;
+        /*width:1110px;*/
         padding:10px 135px;
     }
     .navbar-brand{
@@ -20,7 +25,7 @@ nav#main-nav{
             padding:0 .5em;
             width:100px;
             a{
-                font-size:10pt;
+                font-size:8pt;
                 font-family:$montserrat;
                 color:black;
                 text-align:center;
@@ -32,14 +37,136 @@ nav#main-nav{
         li:nth-child(2){
             width:120px;
         }
-        .radioflyer{
+        li:last-child{
             background-color:$radioflyer;
             margin-left:.5rem;
             a {
                 color:white;
             }
         }
-        
     }
 }
+
+/* Join Now Section Styles */
+section#joinnow-section{
+    padding-top:1em;
+    position:relative;
+    top:-15px;
+    h4{
+        text-align:center;
+        color:white;
+        font-family:$montserrat;
+    }
+
+    div.acf-fields.acf-form-fields.-left{
+        .acf-field{
+            .acf-input{
+                width:100%;
+            }
+        }
+    }
+
+    div.acf-field{
+        display:inline-block;
+        border-top:none;
+    }
+    div.acf-field::before{
+        display:none;
+    }
+    div.acf-label{
+        display:none;
+    }
+    div.acf-fields, div.acf-form-submit{
+        display:inline-block;
+    }
+    div.acf-form-submit{
+        position:absolute;
+        input#join-form-submit-button{
+        }
+    }
+    div#subscriber-name, div#subscriber-email{
+        padding:0;
+    }
+}
+
+.understrap_btn{
+            color:white;
+            background-color:$radioflyer;
+            padding:10px;
+            border:none;
+            font-family:$montserrat;
+            font-size:8pt;
+            width:100px;
+}
+
+
+#about-section{
+    div.row{
+        div.col-6{
+            p{
+                font-size:10pt;
+                font-family:$montserrat;
+            }
+        }
+        div.col-6:first-child{
+            padding-top:10%;
+        }
+    }
+}
+
+#get-connected-section{
+    a{
+        color:black;
+    }
+    min-height:200px;
+}
+
+.card-body p{
+    font-size:10pt;
+    font-family:$montserrat;
+}
+
+#resources-section{
+    padding-bottom:9%;
+}
+
+#get-connected-section, #resources-section, #joinnow-section{
+    min-height:200px;
+    background-size:100% 100%;
+    background-repeat:no-repeat;
+}
+
+.section-heading{
+    font-family:$montserrat;
+    text-align:center;
+    margin:auto;
+    padding:5%;
+}
      
+
+footer{
+    h6#footer-blog-title, #footer-contact h6{
+        font-family:$montserrat;
+    }
+    h6, p{
+        color:white;
+    }
+    p{
+        font-size:8pt;
+    }
+    background-color:black;
+    div.site-info{
+        p{
+            font-size:8pt;
+        }
+    }
+    ul{
+        list-style:none;
+        a{
+            color:white;
+            font-family:$montserrat;
+        }
+    }
+} 
+ 
+
