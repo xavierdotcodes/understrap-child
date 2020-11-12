@@ -49,7 +49,7 @@ $background_image = get_field( 'get_connected_section_background_image' );
 
         <?php if( !empty( $linkedin ) ) : ?>
             <!-- LinkedIn --> 
-                <a class="mx-auto" href="<?php sprintf( '%1$s%2$s', $linkedin_url, $linkedin ); ?>"> <i class="fab fa-linkedin-in"></i></a> 
+                <a class="mx-auto" href="<?php sprintf( '%1$s%2$s', $linkedin_url, $linkedin ); ?>"> <i class="fab fa-linkedin-in fa-3x"></i></a> 
         <?php endif; ?>
 
         <?php if( !empty( $youtube ) ) :?>
