@@ -39,27 +39,27 @@ $background_image = get_field( 'get_connected_section_background_image' );
         <div class="mx-auto row col-<?php echo  $icon_count; ?>">
         <?php if( !empty( $instagram ) ) : ?>
             <!-- instagram --> 
-           <a class="mx-auto" href="<?php sprintf('http://www.instagram.com/%1$s', $instagram); ?>"> <i class="fab fa-instagram fa-3x"></i></a>
+           <a class="mx-auto" href="http://www.instagram.com/<?php echo $instagram; ?>"> <i class="fab fa-instagram fa-3x"></i></a>
         <?php endif; ?>
 
         <?php if ( !empty( $twitter ) ) : ?>
             <!-- twitter --> 
-                <a class="mx-auto" href="<?php sprintf('%1$s%2$s', $twitter_url, $twitter); ?>"> <i class="fab fa-twitter fa-3x"></i> </a>
+                <a class="mx-auto" href="http://www.twitter.com/<?php echo $twitter; ?>"> <i class="fab fa-twitter fa-3x"></i> </a>
         <?php endif; ?>
 
         <?php if( !empty( $linkedin ) ) : ?>
             <!-- LinkedIn --> 
-                <a class="mx-auto" href="<?php sprintf( '%1$s%2$s', $linkedin_url, $linkedin ); ?>"> <i class="fab fa-linkedin-in fa-3x"></i></a> 
+                <a class="mx-auto" href="http://www.linkedin.com/in/<?php echo $linkedin; ?>"> <i class="fab fa-linkedin-in fa-3x"></i></a> 
         <?php endif; ?>
 
         <?php if( !empty( $youtube ) ) :?>
             <!-- youtube --> 
-                <a class="mx-auto" href="<?php sprintf( '%1$s%2$s', $youtube_url, $youtube ); ?>"> <i class="fab fa-youtube fa-3x"></i> </a>  
+                <a class="mx-auto" href="http://www.youtube.com/<?php echo $youtube;?>"> <i class="fab fa-youtube fa-3x"></i> </a>  
         <?php endif; ?>
 
         <?php if( !empty( $facebook ) ) : ?>
             <!-- Facebook --> 
-                <a class="mx-auto" href="<?php sprintf( '%1$s%2$s', $facebook_url, $facebook  );  ?>"> <i class="fab fa-facebook fa-3x"></i> </a>
+                <a class="mx-auto" href="http://www.facebook.com/<?php echo $facebook; ?>"> <i class="fab fa-facebook fa-3x"></i> </a>
         <?php endif; ?>
                    </div> 
     </article>
