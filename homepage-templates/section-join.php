@@ -19,6 +19,7 @@ $options = array( 'post_id' => 'new_post',
                     'submit_value' => __( 'join now', 'acf' ),
                     'field_groups' => array('group_5fa6d09b86c75'), 
                     'label_placement' => 'left', 
+                    'form_attributes' => array('action' => 'subscribe'),
                     'html_submit_button' => '<input type="submit" class="acf-button button rounded-pill understrap_btn text-uppercase" id="join-form-submit-button" value="%s" />',
 );
 

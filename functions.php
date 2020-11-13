@@ -2,17 +2,19 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
-
+/*
 function understrap_remove_scripts() {
-    /*wp_dequeue_style( 'understrap-styles' );
+    wp_dequeue_style( 'understrap-styles' );
     wp_deregister_style( 'understrap-styles' );
 
     wp_dequeue_script( 'understrap-scripts' )
-        wp_deregister_script( 'understrap-scripts' );*/
+    wp_deregister_script( 'understrap-scripts' );
 
     // Removes the parent themes stylesheet and scripts from inc/enqueue.php
 }
 add_action( 'wp_enqueue_scripts', 'understrap_remove_scripts', 20 );
+ */
+
 
 add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles' );
 function theme_enqueue_styles() {
@@ -22,10 +24,19 @@ function theme_enqueue_styles() {
     wp_enqueue_style( 'child-understrap-styles', get_stylesheet_directory_uri() . '/css/child-theme.min.css', array(), $the_theme->get( 'Version' ) );
     wp_enqueue_script( 'jquery');
     wp_enqueue_script( 'child-understrap-scripts', get_stylesheet_directory_uri() . '/js/child-theme.min.js', array(), $the_theme->get( 'Version' ), true );
+
+
+
     if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
         wp_enqueue_script( 'comment-reply' );
     }
 }
+
+function local(){
+    wp_localize_script('child-understrap-scripts', 'ajaxurl', admin_url( 'admin-ajax.php' ));
+}
+add_action('admin_enqueue_scripts', 'local');
+add_action('wp_enqueue_scripts', 'local');
 
 function add_child_theme_textdomain() {
     load_child_theme_textdomain( 'understrap-child', get_stylesheet_directory() . '/languages' );
@@ -125,26 +136,6 @@ function subscriber_custom_post_type() {
 add_action( 'init', 'subscriber_custom_post_type'  );
 
 
-//Subscriber form action handler
-function save_subscriber( $post_id ){
-
-    //if not of post type: subscriber
-    if( get_post_type( $post_id ) !== 'subscriber' ){
-        return;
-    } 
-
-    //exit if on admin
-    if( is_admin() ){
-        return;
-    }
-
-    $post = get_post( $post_id ); 
-
-    $name = get_field( 'name', $post_id );
-    $email = get_field( 'email', $post_id ); 
-}
-add_action( 'acf/save_post', 'save_subscriber' );
-
 //Register Footer menu widget
 function understrap_child_widgets_init(){
     $widget_before = '<div id="footer-menu" class="col-3">';
@@ -162,7 +153,7 @@ function understrap_child_widgets_init(){
 }
 add_action( 'widgets_init', 'understrap_child_widgets_init' ); 
 
-//read more >  excerpt link
+//lesson's "read more >" excerpt link
 function understrap_all_excerpts_get_more_link( $post_excerpt ) {
     if(! is_admin() ){
         $post_excerpt = $post_excerpt . ' [...]<p><a class="understrap-read-more-link" href="' . esc_url( get_permalink( get_the_ID() ) ) . '">' 
@@ -172,4 +163,47 @@ function understrap_all_excerpts_get_more_link( $post_excerpt ) {
 }
 
 
+add_action( 'wp_ajax_subscribe', 'add_subscriber' );
+add_action( 'wp_ajax_nopriv_subscribe', 'add_subscriber' );
+function add_subscriber() { 
+    $name = $_POST['subscriber_name']; 
+    $email = $_POST['subscriber_email']; 
 
+    $response = array(
+        'error' => false,
+    );
+
+    if( empty( trim( $_POST['email'] ) ) ){
+        $response['error'] = true; 
+        $response[ 'error_message' ] = 'Email is required'; 
+        exit( json_encode( $response ) );
+    }
+
+    if( empty( trim( $_POST['name'] ) ) ){
+        $response['error'] = true; 
+        $response[ 'error_message' ] = 'Email is required'; 
+        exit( json_encode( $response ) );
+    }
+
+    if( post_exists( $email, $name, null, 'subscriber' ) ){
+        $response['error'] = true; 
+        $response[ 'error_message' ] = 'Email has already been subscribed';
+        exit( json_encode( $response ) );
+    }
+
+
+    $new_subscriber = array(
+        'post_content' => $name,
+        'post_title' => $email,
+        'post_type' => 'subscriber', 
+    );
+
+    $return = wp_insert_post($new_subscriber, true);
+
+    if( is_wp_error( $return ) ){
+        $response[ 'error' ] = true; 
+        $response[ 'error_message' ] = $return->get_error_message();
+    }
+
+    exit( json_encode( $response ) );
+}
