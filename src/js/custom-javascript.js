@@ -5,15 +5,15 @@ jQuery(document).ready(function($){
 
             var $form = $(this);
 
-            $.post( ajaxurl, $form.serialize(), function( data){
+            $.post( ajaxurl, $form.serialize(), function(data){
                 //clear form
 
+                //display result in popper tooltip
                 if(!data.error){
-                 alert('Thanks for subscribing');
+
                 }else{
                     console.log(data.error_message);
                 }
-
             });
     });
 

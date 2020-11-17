@@ -38,6 +38,7 @@ function local(){
 add_action('admin_enqueue_scripts', 'local');
 add_action('wp_enqueue_scripts', 'local');
 
+
 function add_child_theme_textdomain() {
     load_child_theme_textdomain( 'understrap-child', get_stylesheet_directory() . '/languages' );
 }
@@ -162,26 +163,35 @@ function understrap_all_excerpts_get_more_link( $post_excerpt ) {
     }
 }
 
+function ajax_action_hidden_input($data){
+    echo '<input type="hidden" name="action" value="subscribe" />'; 
+}
+add_action('acf/input/form_data', 'ajax_action_hidden_input');
 
-add_action( 'wp_ajax_subscribe', 'add_subscriber' );
-add_action( 'wp_ajax_nopriv_subscribe', 'add_subscriber' );
-function add_subscriber() { 
-    $name = $_POST['subscriber_name']; 
-    $email = $_POST['subscriber_email']; 
+function add_subscriber() {
+    $name = $_POST['acf']['field_5fa6d0c8a87ac']; 
+    $email = $_POST['acf']['field_5fa6d0fba87ad']; 
 
     $response = array(
         'error' => false,
     );
 
-    if( empty( trim( $_POST['email'] ) ) ){
+    if( empty( trim( $email ) ) ){
         $response['error'] = true; 
         $response[ 'error_message' ] = 'Email is required'; 
         exit( json_encode( $response ) );
     }
 
-    if( empty( trim( $_POST['name'] ) ) ){
+    //server side email validation 
+    if( !filter_var( $email, FILTER_VALIDATE_EMAIL ) ){
+        $response['error'] = true;
+        $response['error_message'] = 'Invalid email submitted'; 
+        exit( json_encode( $response ) ); 
+    }
+
+    if( empty( trim( $name ) ) ){
         $response['error'] = true; 
-        $response[ 'error_message' ] = 'Email is required'; 
+        $response[ 'error_message' ] = 'Name is required'; 
         exit( json_encode( $response ) );
     }
 
@@ -191,11 +201,11 @@ function add_subscriber() {
         exit( json_encode( $response ) );
     }
 
-
     $new_subscriber = array(
         'post_content' => $name,
         'post_title' => $email,
         'post_type' => 'subscriber', 
+        'post_status' => 'publish',
     );
 
     $return = wp_insert_post($new_subscriber, true);
@@ -205,5 +215,8 @@ function add_subscriber() {
         $response[ 'error_message' ] = $return->get_error_message();
     }
 
+    //print_r($_POST);
     exit( json_encode( $response ) );
 }
+add_action( 'wp_ajax_subscribe', 'add_subscriber' );
+add_action( 'wp_ajax_nopriv_subscribe', 'add_subscriber' );
