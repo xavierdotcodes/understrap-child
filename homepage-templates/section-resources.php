@@ -1,6 +1,5 @@
 <?php 
 wp_reset_query(); 
-$resources_background_image = get_field( 'resources_section_background_image' );
 
 $args = array(
     'post_type' => 'resource', 
@@ -9,7 +8,11 @@ $args = array(
 $resources = new WP_Query($args); 
 
  ?>
- <article class="container pt-5" id="resources-section" style="background-image:url('<?php echo $resources_background_image;  ?>');">
+ <article class="container pt-5" id="resources-section" style="background-image:url('<?php echo get_stylesheet_directory_uri() . '/img/resources-bg.jpg';?>');">
+    <div class="peripheral-image-container">
+        <img id="splash-mid-left" class="peripheral-images" src="<?php echo get_stylesheet_directory_uri() . '/img/splash-mid-left.png'; ?>" alt="" />
+        <img id="splash-mid-right" class="peripheral-images" src="<?php echo get_stylesheet_directory_uri() . '/img/splash-mid-right.png'; ?>" alt="" />
+    </div>
 
     <h2 class="section-heading">Resources</h2>
         <div class="row">

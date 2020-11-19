@@ -34,7 +34,11 @@ $background_image = get_field( 'get_connected_section_background_image' );
 
  if( !$icon_count == 0 ) :  ?>
 
-    <article id="get-connected-section" class="container py-5" style="background-image:url('<?php echo $background_image; ?>');">
+    <article id="get-connected-section" class="container py-5" style="background-image:url('<?php echo get_stylesheet_directory_uri() . '/img/get-connected-bg.png';?>');">
+        <div class="peripheral-images-container">
+            <img id="splash-bottom-left" class="peripheral-images" src="<?php echo get_stylesheet_directory_uri() . '/img/splash-bottom-left.png'; ?>" />
+            <img id="line-bottom-right" class="peripheral-images" src="<?php echo get_stylesheet_directory_uri() . '/img/bottom-right-line.png'; ?>" />
+        </div>
         <h2 class="section-heading">Get Connected</h2> 
         <div class="mx-auto row col-<?php echo  $icon_count; ?>">
         <?php if( !empty( $instagram ) ) : ?>

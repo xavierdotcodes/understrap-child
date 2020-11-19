@@ -26,6 +26,9 @@ $container = get_theme_mod( 'understrap_container_type' );
 
                     <main class="site-main" id="main" role="main">
 
+                       <div class="peripheral-images-container">
+                        <img id="line-top-left" class="peripheral-images" src="<?php echo get_stylesheet_directory_uri() . '/img/line-top-left.png'; ?>" />
+                       </div>
 <?php
     get_template_part( 'global-templates/hero' );
     get_template_part( 'homepage-templates/section', 'join' ); 

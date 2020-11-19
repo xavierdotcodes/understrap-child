@@ -49,13 +49,15 @@ nav#main-nav{
 
 /* Join Now Section Styles */
 section#joinnow-section{
-    padding-top:1em;
+    padding-top:1em 0 3em 0;
     position:relative;
     top:-15px;
     h4{
         text-align:center;
         color:white;
         font-family:$montserrat;
+        width:50%;
+        padding-bottom:2%;
     }
 
     div.acf-fields.acf-form-fields.-left{
@@ -169,4 +171,52 @@ footer{
     }
 } 
  
+
+div.peripheral-images-container{
+    position:relative;
+}
+
+img.peripheral-images{
+    position:absolute;
+}
+
+#line-top-left{
+    width:100px;
+    top:-40px;
+}
+
+#splash-mid-left{
+    width:100px;
+    left:-1em;
+    position:relative;
+    top:-80px;
+}
+
+#splash-mid-right{
+    position:relative;
+    width:150px;
+    right:-1em;
+    top:-140px;
+    float:right;
+
+}
+
+
+#splash-bottom-left{
+    width:100px;
+    top:-72px;
+    left:-1em; 
+}
+
+#line-bottom-right{
+    width:100px;
+    right:-1em;
+    top:-235px;
+}
+
+img#goldspecks{
+    width:100px;
+    top:-7%;
+    left:5%;
+}
 

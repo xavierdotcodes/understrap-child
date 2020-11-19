@@ -2,10 +2,10 @@
 wp_reset_query();
 $background_image = get_field( 'join_now_section_background_image' ); 
  ?>
-<section id="joinnow-section" class="container" style="background-image:url('<?php echo $background_image; ?> ');">
+<section id="joinnow-section" class="container" style="background-image:url('<?php echo get_stylesheet_directory_uri() . '/img/join-bg.png';?>');">
+                <img id="goldspecks" class="peripheral-images" src="<?php echo esc_html_e(get_stylesheet_directory_uri() . '/img/goldspecs.png');?>" /> <h4 class="section-heading" >Join my newsletter and receive more English lessons for FREE</h4>
     <div class="row">
         <div class="col-6 mx-auto">
-            <h4 class="section-heading" >Join my newsletter and receive more English lessons for FREE</h4>
 
 <?php 
 
